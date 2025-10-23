@@ -1,6 +1,5 @@
 [Volver al índice](../index.md)
 indice2
-[pratcica1](./pr0201/)
-[pratcica2](./pr0202/)
-[pratcica3](./pr0203/)
-[pratcica4](./pr0204/)
+- [Práctica 2.1](pr0201/pr0201.md)
+- [Práctica 2.2](pr0202/pr0202.md)
+- [Práctica 2.4](pr0204/pr0204.md)
