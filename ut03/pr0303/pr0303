@@ -1,0 +1,241 @@
+# PR0303: Ejercicios sobre los comandos `while`, `until` y `for`
+
+Realiza los siguientes ejercicios en Bash. Es necesario entregar **por lo menos 12 ejercicios** de los propuestos para que la práctica pueda ser evaluada.
+
+### 1. Contar hasta 10 con `for`
+
+Usa un bucle for para contar del 1 al 10 e imprimir cada número en una línea nueva.
+```bash
+#!/bin/bash
+for i in {1..10}
+do
+    echo $i
+done
+```
+
+### 2. Sumar los primeros 50 números
+
+Usa `for` para sumar los primeros 50 números naturales y muestra el resultado.
+```bash
+#!/bin/bash
+suma=0
+for i in {1..50}
+do
+    suma=$((suma + i))
+done
+echo "La suma de los primeros 50 números es: $suma"
+
+```
+### 3. Tabla de multiplicar
+
+Pide un número al usuario y usa for para imprimir su tabla de multiplicar del 1 al 10.
+```bash
+#!/bin/bash
+read -p "Introduce un número: " num
+for i in {1..10}
+do
+    echo "$num x $i = $((num * i))"
+done
+```
+### 4. Imprimir cada letra
+
+Pide una palabra al usuario y usa for para imprimir cada letra en una línea nueva.
+```bash
+#!/bin/bash
+read -p "Introduce una palabra: " palabra
+for (( i=0; i<${#palabra}; i++ ))
+do
+    echo "${palabra:$i:1}"
+done
+```
+### 5. Contar números pares del 1 al 20 con while: 
+
+Usa while para mostrar los números pares entre 1 y 20.
+```bash
+#!/bin/bash
+i=1
+while [ $i -le 20 ]
+do
+    if [ $((i % 2)) -eq 0 ]; then
+        echo $i
+    fi
+    ((i++))
+done
+```
+### 6. Suma de dígitos
+
+Pide un número al usuario y usa while para sumar todos sus dígitos. Por ejemplo, 123 debería devolver 6.
+```bash
+#!/bin/bash
+read -p "Introduce un número: " num
+suma=0
+while [ $num -gt 0 ]
+do
+    digito=$((num % 10))
+    suma=$((suma + digito))
+    num=$((num / 10))
+done
+echo "La suma de los dígitos es: $suma"
+```
+### 7. Cuenta regresiva
+
+Pide al usuario un número inicial y usa until para hacer una cuenta regresiva hasta llegar a cero.
+```bash
+#!/bin/bash
+read -p "Introduce un número para la cuenta regresiva: " n
+until [ $n -lt 0 ]
+do
+    echo $n
+    ((n--))
+done
+```
+### 8. Imprimir solo archivos .txt
+
+Usa for para iterar sobre todos los archivos en un directorio y mostrar solo aquellos que terminen en .txt.
+```bash
+#!/bin/bash
+for archivo in *
+do
+    if [[ $archivo == *.txt ]]; then
+        echo "Archivo de texto: $archivo"
+    fi
+done
+```
+### 9. Factorial de un número
+
+Solicita un número al usuario y calcula su factorial usando un bucle for.
+```bash
+#!/bin/bash
+read -p "Introduce un número: " num
+factorial=1
+for (( i=1; i<=num; i++ ))
+do
+    factorial=$((factorial * i))
+done
+echo "El factorial de $num es $factorial"
+```
+### 10. Verificar contraseña
+
+Usa until para pedir al usuario que ingrese una contraseña correcta, y repite hasta que la acierte.
+```bash
+#!/bin/bash
+contraseña="secreto"
+entrada=""
+until [ "$entrada" == "$contraseña" ]
+do
+    read -sp "Introduce la contraseña: " entrada
+    echo
+    if [ "$entrada" != "$contraseña" ]; then
+        echo "Contraseña incorrecta. Intenta de nuevo."
+    fi
+done
+echo "Contraseña correcta. Acceso concedido."
+```
+## Opcionales
+
+### 11. Adivinar un número
+
+Crea un juego con while en el que el usuario intenta adivinar un número entre 1 y 10. Repite hasta que lo adivine.
+```bash
+#!/bin/bash
+num=$(( RANDOM % 10 + 1 ))
+adivina=0
+while [ $adivina -ne $num ]
+do
+    read -p "Adivina un número entre 1 y 10: " adivina
+    if [ $adivina -lt $num ]; then
+        echo "Demasiado bajo."
+    elif [ $adivina -gt $num ]; then
+        echo "Demasiado alto."
+    else
+        echo "¡Correcto! "
+    fi
+done
+```
+### 12. Mostrar la fecha n veces
+
+Pide al usuario un número n y usa for para mostrar la fecha y hora actual n veces.
+```bash
+#!/bin/bash
+read -p "¿Cuántas veces quieres ver la fecha? " n
+for (( i=1; i<=n; i++ ))
+do
+    date
+    sleep 1
+done
+```
+### 13. Promedio de números ingresados
+
+Usa while para pedir números al usuario hasta que ingrese "fin", luego muestra el promedio.
+```bash
+#!/bin/bash
+suma=0
+contador=0
+
+while true
+do
+    read -p "Introduce un número (o 'fin' para terminar): " num
+    if [ "$num" == "fin" ]; then
+        break
+    fi
+    suma=$((suma + num))
+    contador=$((contador + 1))
+done
+
+if [ $contador -gt 0 ]; then
+    promedio=$((suma / contador))
+    echo "El promedio es: $promedio"
+else
+    echo "No se introdujeron números."
+fi
+```
+### 14. Contar palabras en una cadena
+
+Pide al usuario una frase y usa for para contar y mostrar el número de palabras en ella.
+```bash
+#!/bin/bash
+read -p "Introduce una frase: " frase
+contador=0
+for palabra in $frase
+do
+    ((contador++))
+done
+echo "La frase tiene $contador palabras."
+```
+### 15. Juego de adivinar con límites dinámicos
+
+Genera un número aleatorio entre 1 y 100 y pide al usuario que adivine. Usa while y da pistas de si el número es mayor o menor, terminando cuando acierte.
+```bash
+#!/bin/bash
+num=$(( RANDOM % 100 + 1 ))
+intento=0
+
+while true
+do
+    read -p "Adivina el número (1-100): " intento
+    if [ $intento -lt $num ]; then
+        echo "Demasiado bajo."
+    elif [ $intento -gt $num ]; then
+        echo "Demasiado alto."
+    else
+        echo "¡Correcto! El número era $num 🎉"
+        break
+    fi
+done
+```
+### 16. Archivo con nombres de directorios
+
+Usa for para listar todos los directorios en la ruta actual y escribe sus nombres en un archivo directorios.txt.
+```bash
+#!/bin/bash
+> directorios.txt  # Vacía el archivo si ya existe
+
+for elemento in *
+do
+    if [ -d "$elemento" ]; then
+        echo "$elemento" >> directorios.txt
+    fi
+done
+
+echo "Los nombres de los directorios se han guardado en 'directorios.txt'."
+```
