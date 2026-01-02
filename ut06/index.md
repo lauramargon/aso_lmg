@@ -10,3 +10,6 @@
 
 
 - [Práctica 6.4](pr0604/pr0604.md)
+  
+
+- [Práctica 6.5](pr0605/pr0605.md)
