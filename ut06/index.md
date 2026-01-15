@@ -13,3 +13,15 @@
   
 
 - [Práctica 6.5](pr0605/pr0605.md)
+
+
+- [Práctica 6.5](pr0606/pr0606.md)
+
+
+- [Práctica 6.5](pr0607/pr0607.md)
+
+
+- [Práctica 6.5](pr0608/pr0608.md)
+
+
+- [Práctica 6.5](pr0609/pr0609.md)
